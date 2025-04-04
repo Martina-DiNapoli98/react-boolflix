@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import Header from './products/Header'
+import { MoviesProvider } from "./Contexts/MovieContext"
+import SearchMovie from './components/SearchMovie'
+import ListMovies from './components/ListMovies'
 
-
-
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
     <>
-
+      <MoviesProvider>
+        <Header />
+        <SearchMovie />
+        <ListMovies />
+      </MoviesProvider>
     </>
   )
 }
-
-export default App
