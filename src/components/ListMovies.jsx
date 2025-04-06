@@ -11,6 +11,15 @@ export default function ListMovies() {
                 const countryCode = LangMap[lang];
                 return (
                     <li key={`Movie-${movie.id}`}>
+                        <img
+                            src={
+                                movie.poster_path
+                                    ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
+                                    : "https://via.placeholder.com/150x225?text=No+Image"
+                            }
+                            alt={movie.title || movie.name}
+                            style={{ width: "150px", borderRadius: "10px" }}
+                        />
                         <p><strong>Titolo:</strong> {movie.title}</p>
                         <p><strong>Titolo originale:</strong> {movie.original_title}</p>
                         <p>
