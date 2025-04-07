@@ -9,6 +9,24 @@ export default function ListMovies() {
             {movies.map((movie) => {
                 const lang = movie.original_language;
                 const countryCode = LangMap[lang];
+
+                const fullStars = Math.ceil(movie.vote_average / 2);
+                const emptyStars = 5 - fullStars;
+                const fullStarsElements = [];
+                const emptyStarsElements = [];
+
+                for (let i = 0; i < fullStars; i++) {
+                    fullStarsElements.push(
+                        <i key={`full-${i}`} className="fa fa-star" style={{ color: 'gold' }}></i>
+                    );
+                }
+
+                for (let i = 0; i < emptyStars; i++) {
+                    emptyStarsElements.push(
+                        <i key={`empty-${i}`} className="fa fa-star" style={{ color: 'gray' }}></i>
+                    );
+                }
+
                 return (
                     <li key={`Movie-${movie.id}`}>
                         <img
@@ -20,8 +38,8 @@ export default function ListMovies() {
                             alt={movie.title || movie.name}
                             style={{ width: "150px", borderRadius: "10px" }}
                         />
-                        <p><strong>Titolo:</strong> {movie.title}</p>
-                        <p><strong>Titolo originale:</strong> {movie.original_title}</p>
+                        <p><strong>Titolo:</strong> {movie.title || movie.name}</p>
+                        <p><strong>Titolo originale:</strong> {movie.original_title || movie.original_name}</p>
                         <p>
                             <strong>Lingua:</strong>{" "}
                             {countryCode ? (
@@ -35,7 +53,11 @@ export default function ListMovies() {
                                 <span>{lang}</span>
                             )}
                         </p>
-                        <p><strong>Voto:</strong> {movie.vote_average}</p>
+                        <p>
+                            <strong>Voto:</strong>{" "}
+                            {fullStarsElements}
+                            {emptyStarsElements}
+                        </p>
                     </li>
                 );
             })}
